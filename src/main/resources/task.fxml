@@ -40,7 +40,7 @@
    <center>
       <TabPane fx:id="tabPanee" BorderPane.alignment="CENTER">
          <tabs>
-            <Tab fx:id="tabProject" onSelectionChanged="#loadProjects" text="Add Project">
+            <Tab fx:id="tabProject" onSelectionChanged="#loadProjects" text="Projects">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
