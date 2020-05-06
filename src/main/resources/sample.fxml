@@ -46,9 +46,9 @@
       </Label>
    </bottom>
    <center>
-      <TabPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Register">
+          <Tab fx:id="tabRegister" text="Register">
             <content>
               <AnchorPane layoutX="200.0" layoutY="200.0" minHeight="0.0" minWidth="0.0" prefHeight="478.0" prefWidth="831.0">
                      <children>
@@ -70,7 +70,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Login">
+          <Tab fx:id="tabLogin" text="Login">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

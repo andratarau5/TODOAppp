@@ -41,7 +41,6 @@ public class UserRepository implements CrudRepository<User, Integer> {
     }
 
     public User findById(Integer id) {
-        //COMPLETED : Add Try catch
         try {
             User user = entityManager.find(User.class, id);
             return user;

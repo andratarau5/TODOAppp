@@ -24,11 +24,22 @@ public class TaskRepository implements CrudRepository<Task, Integer> {
     }
 
     public void deleteById(Integer id) {
+        Task task = findById(id);
+        if (task != null) {
+            entityManager.getTransaction().begin();
+            entityManager.remove(task);
+            entityManager.getTransaction().commit();
+        }
     }
 
     public Task findById(Integer id) {
+        try {
+            Task task = entityManager.find(Task.class, id);
+            return task;
+        } catch (Exception e) {
+            System.out.println("Something went wrong (TaskRepository");
+        }
         return null;
     }
-
 }
 

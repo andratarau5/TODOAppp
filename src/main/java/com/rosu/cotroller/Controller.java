@@ -48,9 +48,10 @@ public class Controller {
     public TableView tableView;
     public TableColumn<Task, String> colTaskDesc;
     public TableColumn<Task, Integer> colTaskId;
-    public TabPane tabPaneTasks;
-    public Tab tabAddTask;
-    public Tab tabAllTasks;
+    public Tab tabRegister;
+    public Tab tabLogin;
+    public TabPane tabPane;
+
 
     @FXML
     private Label lblInformation;
@@ -69,22 +70,23 @@ public class Controller {
     @FXML
     private TextField txtFieldLogin;
 
+
     private UserRepository userRepository;
     private TaskRepository taskRepository;
     private boolean isConnectionSuccessful = false;
-    private Task task;
-    private ObservableList<Task> tasksList;
+    private User loggedInUser;
 
 
     public void initialize() {
         try {
             persistenceConnection();
+            tabPane.getTabs().clear();
+            tabPane.getTabs().add(tabRegister);
+            tabPane.getTabs().add(tabLogin);
         } catch (Exception ex) {
             System.out.println("Connection is not allowed");
             isConnectionSuccessful = false;
         }
-        initColumn();
-        tableView.setItems(getTasksList());
     }
 
     private void persistenceConnection() {
@@ -139,15 +141,27 @@ public class Controller {
             InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("task.fxml");
             Parent root = fxmlLoader.load(resourceAsStream);
 
-            Scene loginScene = new Scene(root);
+            Scene loginScene = new Scene(root,800,600);
             Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            window.setTitle("Tasks");
+            window.setTitle("Projects");
             window.setScene(loginScene);
             window.show();
-            tabPaneTasks.getTabs().add(tabAddTask);
-            tabPaneTasks.getTabs().add(tabAllTasks);
         }
+
+//        loggedInUser = userRepository.findByUsername(txtFieldUsernameLogin.getText());
+//        if(loggedInUser != null){
+//            tabPane.getTabs().clear();
+//            tabPane.getTabs().add(tabAddTask);
+//            tabPane.getTabs().add(tabAllTasks);
+//            lblInformation.setText("user login succesfull");
+//            lblInformation.setAlignment(Pos.CENTER);
+//
+//        }else {
+//            lblInformation.setText("user not existing");
+//            lblInformation.setAlignment(Pos.CENTER);
+//        }
     }
+
 
 
     @FXML
@@ -187,61 +201,6 @@ public class Controller {
             txtFieldLogin.setVisible(false);
             pwdFieldLogin.setVisible(true);
         }
-    }
-
-    public void insertTaskEnter(KeyEvent keyEvent) {
-        insertTask(keyEvent);
-    }
-
-    public void insertTask(ActionEvent actionEvent) {
-        insertTask(actionEvent);
-    }
-
-    private void insertTask(KeyEvent keyEvent) {
-
-        /** TO DO: show all tasks not only the last added ones **/
-
-        if(keyEvent.getCode().equals(KeyCode.ENTER)){
-            Task task = new Task();
-            task.setCreatedAt(new Date());
-            task.setDescription(txtFieldTask.getText());
-
-            taskRepository.save(task);
-
-            CheckBox checkBox = new CheckBox();
-            checkBox.setText(task.getDescription());
-
-            vBoxTasks.getChildren().add(checkBox);
-        }
-    }
-//
-//    public void allTasksPane(){
-//        tabPaneTasks.getTabs().add(tabAllTasks);
-//
-//    }
-
-    public void loadTasks(Event event){
-//        List<Task> tasks = taskRepository.findAll();
-//        final ObservableList<Task> dbTasks = FXCollections.observableList(tasks);
-//        initColumn();
-//        tableView.setItems(dbTasks);
-
-
-    }
-
-    public void initColumn(){
-        try {
-            colTaskId.setCellValueFactory(new PropertyValueFactory<Task, Integer>("id"));
-            colTaskDesc.setCellValueFactory(new PropertyValueFactory<Task, String>("description"));
-        }catch (NullPointerException e){
-            System.out.println("Exception caught");
-        }
-    }
-
-    public ObservableList<Task> getTasksList() {
-        task = new Task();
-        tasksList = FXCollections.observableArrayList(taskRepository.findAll());
-        return tasksList;
     }
 
 }

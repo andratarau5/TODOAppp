@@ -11,13 +11,12 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="tasks")
+@Table(name="task")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="task_id")
     private int id;
-
     private String description;
 
     @ManyToOne
