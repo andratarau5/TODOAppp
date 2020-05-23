@@ -11,11 +11,13 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "project")
+@Table(name = "projects")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private int project_id;
+    @Column
     private String name;
 
     @ManyToMany(mappedBy = "projects")

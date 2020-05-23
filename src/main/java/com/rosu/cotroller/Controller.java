@@ -84,7 +84,8 @@ public class Controller {
             tabPane.getTabs().add(tabRegister);
             tabPane.getTabs().add(tabLogin);
         } catch (Exception ex) {
-            System.out.println("Connection is not allowed");
+            ex.printStackTrace();
+            System.out.println("Connection is not allowed  ~Controller~ ");
             isConnectionSuccessful = false;
         }
     }
@@ -95,6 +96,7 @@ public class Controller {
 
         userRepository = new UserRepository(entityManager);
         taskRepository = new TaskRepository(entityManager);
+
     }
 
 
@@ -137,29 +139,22 @@ public class Controller {
         User user = userRepository.findByUsername(txtFieldUsernameLogin.getText());
         if(user.getPassword().equals(pwdFieldLogin.getText())){
 
+            lblInformation.setText("user login succesfull");
+            lblInformation.setAlignment(Pos.CENTER);
+
             FXMLLoader fxmlLoader = new FXMLLoader();
-            InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("task.fxml");
+            InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("project.fxml");
             Parent root = fxmlLoader.load(resourceAsStream);
 
             Scene loginScene = new Scene(root,800,600);
             Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            window.setTitle("Projects");
+            window.setTitle("All Projects");
             window.setScene(loginScene);
             window.show();
+        }else {
+            lblInformation.setText("user not existing");
+            lblInformation.setAlignment(Pos.CENTER);
         }
-
-//        loggedInUser = userRepository.findByUsername(txtFieldUsernameLogin.getText());
-//        if(loggedInUser != null){
-//            tabPane.getTabs().clear();
-//            tabPane.getTabs().add(tabAddTask);
-//            tabPane.getTabs().add(tabAllTasks);
-//            lblInformation.setText("user login succesfull");
-//            lblInformation.setAlignment(Pos.CENTER);
-//
-//        }else {
-//            lblInformation.setText("user not existing");
-//            lblInformation.setAlignment(Pos.CENTER);
-//        }
     }
 
 

@@ -16,6 +16,8 @@ public class User {
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)     //AUTO-INCREMENT
     private int user_id;
+
+    @Column(name="username")
     private String username;
     private String password;
 

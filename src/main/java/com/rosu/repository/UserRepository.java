@@ -16,7 +16,7 @@ public class UserRepository implements CrudRepository<User, Integer> {
     public List<User> findAll() {
         //TODO: add implementation
         try {
-            User users = (User) entityManager.createQuery("SELECT u FROM User ")
+            User users = (User) entityManager.createQuery("SELECT u FROM User u")
                     .getResultList()
                     .get(0);
             return (List<User>) users;

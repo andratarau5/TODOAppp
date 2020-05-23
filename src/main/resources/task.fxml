@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="616.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rosu.cotroller.ControllerLogin">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="616.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rosu.cotroller.ControllerTask">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -40,33 +40,6 @@
    <center>
       <TabPane fx:id="tabPanee" BorderPane.alignment="CENTER">
          <tabs>
-            <Tab fx:id="tabProject" onSelectionChanged="#loadProjects" text="Projects">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="295.0" prefWidth="474.0" />
-                        <Label layoutX="37.0" layoutY="43.0" text="Add a project" />
-                        <TextField fx:id="txtFieldProject" layoutX="138.0" layoutY="38.0" onKeyReleased="#insertProjectEnter" prefHeight="26.0" prefWidth="340.0" />
-                        <Button fx:id="btnInsertProject" layoutX="505.0" layoutY="39.0" mnemonicParsing="false" onAction="#insertProject" text="Add" />
-                        <AnchorPane layoutX="9.0" layoutY="86.0" prefHeight="379.0" prefWidth="594.0">
-                           <children>
-                              <ScrollPane layoutX="55.0" layoutY="14.0">
-                                 <content>
-                                    <VBox fx:id="vBoxProject" prefHeight="66.0" prefWidth="488.0" />
-                                 </content>
-                              </ScrollPane>
-                              <TableView fx:id="tableViewProject" layoutX="55.0" layoutY="100.0" prefHeight="260.0" prefWidth="491.0">
-                                <columns>
-                                  <TableColumn fx:id="colIdProject" prefWidth="132.800048828125" text="Id" />
-                                  <TableColumn fx:id="colNameProject" prefWidth="355.99993896484375" text="Project Name" />
-                                </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
             <Tab fx:id="tabAddTask" text="Add Task">
                <content>
                   <AnchorPane prefHeight="463.0" prefWidth="559.0">
@@ -87,11 +60,11 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tableView" layoutX="14.0" layoutY="26.0" prefHeight="381.0" prefWidth="562.0">
+                        <TableView fx:id="tableView" layoutX="14.0" layoutY="26.0" prefHeight="372.0" prefWidth="425.0">
                           <columns>
                             <TableColumn fx:id="colTaskId" prefWidth="75.0" text="Task Id" />
-                            <TableColumn fx:id="colTaskDesc" prefWidth="316.0" text="Description" />
-                              <TableColumn fx:id="colUsername" prefWidth="170.4000244140625" text="Username" />
+                            <TableColumn fx:id="colTaskDesc" prefWidth="204.79998779296875" text="Description" />
+                              <TableColumn fx:id="colUsername" prefWidth="149.60003662109375" text="Username" />
                           </columns>
                         </TableView>
                      </children>
